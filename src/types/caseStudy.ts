@@ -25,4 +25,6 @@ export interface CaseStudy {
     caption: string;
   }[];
   nextProject?: string;
+  description?: string;
+  image?: string;
 }

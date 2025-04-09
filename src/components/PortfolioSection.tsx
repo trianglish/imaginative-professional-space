@@ -6,7 +6,10 @@ import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CaseStudy } from "@/types/caseStudy";
 
-const projects: Pick<CaseStudy, 'id' | 'title' | 'category' | 'description' | 'image'>[] = [
+const projects: (Pick<CaseStudy, 'id' | 'title' | 'category'> & {
+  description: string;
+  image: string;
+})[] = [
   {
     title: "Nature Co. Rebrand",
     category: "branding",
@@ -51,9 +54,13 @@ const projects: Pick<CaseStudy, 'id' | 'title' | 'category' | 'description' | 'i
   }
 ];
 
-// Extend the CaseStudy type to include the description field that's used in this component
-interface ProjectCard extends Pick<CaseStudy, 'id' | 'title' | 'category' | 'image'> {
+// Define the ProjectCard interface for the components in this file
+interface ProjectCard {
+  id: string;
+  title: string;
+  category: string;
   description: string;
+  image: string;
 }
 
 const PortfolioSection = () => {
