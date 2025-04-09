@@ -7,9 +7,10 @@ import { ArrowLeft, ChevronRight, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { CaseStudy as CaseStudyType } from "@/types/caseStudy";
 
 // Mock data structure for case studies
-const caseStudies = [
+const caseStudies: CaseStudyType[] = [
   {
     id: "nature-co-rebrand",
     title: "Nature Co. Rebrand",
@@ -126,13 +127,13 @@ const caseStudies = [
 
 const CaseStudy = () => {
   const { id } = useParams<{ id: string }>();
-  const [caseStudy, setCaseStudy] = useState<any>(null);
+  const [caseStudy, setCaseStudy] = useState<CaseStudyType | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // In a real app, this would be an API call
     const study = caseStudies.find(study => study.id === id);
-    setCaseStudy(study);
+    setCaseStudy(study || null);
     setLoading(false);
   }, [id]);
 
@@ -162,7 +163,7 @@ const CaseStudy = () => {
     testimonial, process, gallery, nextProject 
   } = caseStudy;
 
-  const nextCase = caseStudies.find(study => study.id === nextProject);
+  const nextCase = nextProject ? caseStudies.find(study => study.id === nextProject) : undefined;
 
   const shareCase = () => {
     if (navigator.share) {

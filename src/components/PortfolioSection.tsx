@@ -4,8 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import { CaseStudy } from "@/types/caseStudy";
 
-const projects = [
+const projects: Pick<CaseStudy, 'id' | 'title' | 'category' | 'description' | 'image'>[] = [
   {
     title: "Nature Co. Rebrand",
     category: "branding",
@@ -49,6 +50,11 @@ const projects = [
     id: "fashion-week-pr"
   }
 ];
+
+// Extend the CaseStudy type to include the description field that's used in this component
+interface ProjectCard extends Pick<CaseStudy, 'id' | 'title' | 'category' | 'image'> {
+  description: string;
+}
 
 const PortfolioSection = () => {
   const [activeTab, setActiveTab] = useState("all");
