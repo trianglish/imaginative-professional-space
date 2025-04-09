@@ -16,8 +16,8 @@ const NavBar = () => {
         <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#" className="text-xl font-bold text-marketing-600">
-              <span className="sr-only">Jane Marketer</span>
-              Jane<span className="text-marketing-500">Marketer</span>
+              <span className="sr-only">Betsy Ng</span>
+              Betsy<span className="text-marketing-500">Ng</span>
             </a>
           </div>
           
@@ -69,7 +69,7 @@ const NavBar = () => {
           <div className="pt-5 pb-6 px-5">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-xl font-bold text-marketing-600">Jane<span className="text-marketing-500">Marketer</span></span>
+                <span className="text-xl font-bold text-marketing-600">Betsy<span className="text-marketing-500">Ng</span></span>
               </div>
               <div className="-mr-2">
                 <button

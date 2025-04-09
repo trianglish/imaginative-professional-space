@@ -13,7 +13,7 @@ const HeroSection = () => {
               Impactful <span className="text-gradient">Marketing</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-lg">
-              Hi, I'm Jane Marketer. I help brands connect with their audience through 
+              Hi, I'm Betsy. I help brands connect with their audience through 
               strategic marketing that drives results and creates meaningful experiences.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -41,7 +41,7 @@ const HeroSection = () => {
               <div className="bg-white p-5 rounded-2xl shadow-xl">
                 <img
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-                  alt="Jane Marketer"
+                  alt="Betsy working"
                   className="rounded-xl object-cover w-full max-w-md h-auto"
                 />
               </div>

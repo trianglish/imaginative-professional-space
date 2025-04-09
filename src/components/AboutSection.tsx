@@ -11,7 +11,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 -z-10 bg-marketing-50 rounded-xl transform rotate-3"></div>
               <img
                 src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
-                alt="Jane working"
+                alt="Betsy working"
                 className="rounded-xl shadow-lg z-10 relative"
               />
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">

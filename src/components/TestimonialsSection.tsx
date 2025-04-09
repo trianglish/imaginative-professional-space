@@ -5,25 +5,25 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    content: "Jane transformed our marketing strategy completely. Our online engagement increased by 200% within just three months of implementing her recommendations.",
+    content: "Betsy transformed our marketing strategy completely. Our online engagement increased by 200% within just three months of implementing her recommendations.",
     author: "Sarah Johnson",
     position: "Marketing Director, TechNova",
     image: "https://randomuser.me/api/portraits/women/1.jpg"
   },
   {
-    content: "Working with Jane was a game-changer for our brand. Her creative approach to our social media strategy helped us reach a new demographic we had struggled to connect with.",
+    content: "Working with Betsy was a game-changer for our brand. Her creative approach to our social media strategy helped us reach a new demographic we had struggled to connect with.",
     author: "David Chen",
     position: "CEO, GreenLife Products",
     image: "https://randomuser.me/api/portraits/men/2.jpg"
   },
   {
-    content: "Jane's understanding of digital marketing trends and ability to adapt strategies accordingly is unmatched. She's become an invaluable extension of our marketing team.",
+    content: "Betsy's understanding of digital marketing trends and ability to adapt strategies accordingly is unmatched. She's become an invaluable extension of our marketing team.",
     author: "Michael Brown",
     position: "Brand Manager, Urban Style",
     image: "https://randomuser.me/api/portraits/men/3.jpg"
   },
   {
-    content: "The content strategy Jane developed for us has dramatically improved our conversion rates. She truly understands how to create content that resonates with the target audience.",
+    content: "The content strategy Betsy developed for us has dramatically improved our conversion rates. She truly understands how to create content that resonates with the target audience.",
     author: "Emma Wilson",
     position: "COO, Wellness Hub",
     image: "https://randomuser.me/api/portraits/women/4.jpg"
