@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
@@ -10,42 +11,42 @@ const projects = [
     category: "branding",
     description: "Complete brand redesign for an eco-friendly product line.",
     image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGdyZWVuJTIwYnJhbmRpbmd8ZW58MHx8MHx8fDA%3D",
-    link: "#"
+    id: "nature-co-rebrand"
   },
   {
     title: "Tech Summit Campaign",
     category: "digital",
     description: "Digital marketing strategy for annual tech conference.",
     image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMG1hcmtldGluZ3xlbnwwfHwwfHx8MA%3D%3D",
-    link: "#"
+    id: "tech-summit-campaign"
   },
   {
     title: "Wellness App Launch",
     category: "social",
     description: "Social media strategy for wellness app launch.",
     image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d2VsbG5lc3MlMjBhcHB8ZW58MHx8MHx8fDA%3D",
-    link: "#"
+    id: "wellness-app-launch"
   },
   {
     title: "Luxury Resort Content",
     category: "content",
     description: "Content strategy for luxury resort chain.",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bHV4dXJ5JTIwcmVzb3J0fGVufDB8fDB8fHww",
-    link: "#"
+    id: "luxury-resort-content"
   },
   {
     title: "Food Delivery Rebrand",
     category: "branding",
     description: "Brand refresh for expanding food delivery service.",
     image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMGRlbGl2ZXJ5fGVufDB8fDB8fHww",
-    link: "#"
+    id: "food-delivery-rebrand"
   },
   {
     title: "Fashion Week PR",
     category: "digital",
     description: "Digital PR campaign for fashion week.",
     image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
-    link: "#"
+    id: "fashion-week-pr"
   }
 ];
 
@@ -97,12 +98,12 @@ const PortfolioSection = () => {
                   <CardContent className="p-4">
                     <h3 className="font-semibold text-lg mb-1">{project.title}</h3>
                     <p className="text-gray-600 text-sm mb-3">{project.description}</p>
-                    <a 
-                      href={project.link} 
+                    <Link 
+                      to={`/case-study/${project.id}`}
                       className="inline-flex items-center text-marketing-600 hover:text-marketing-800 transition-colors"
                     >
                       View Case Study <ExternalLink size={16} className="ml-1" />
-                    </a>
+                    </Link>
                   </CardContent>
                 </Card>
               ))}
