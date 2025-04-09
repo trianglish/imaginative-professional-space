@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const AboutSection = () => {
   return (
@@ -14,9 +15,11 @@ const AboutSection = () => {
                 alt="Betsy working"
                 className="rounded-xl shadow-lg z-10 relative"
               />
-              <div className="absolute -bottom-4 -right-4 bg-marketing-500 text-white p-3 rounded-lg shadow-lg">
-                <p className="font-semibold text-sm">10+ Years Experience</p>
-              </div>
+              <Badge 
+                className="absolute top-4 left-4 bg-white text-marketing-600 px-3 py-1.5 text-sm font-medium border-2 border-marketing-200"
+              >
+                10+ Years Experience
+              </Badge>
             </div>
           </div>
           
