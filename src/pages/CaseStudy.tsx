@@ -1,13 +1,20 @@
-
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { ArrowLeft, ChevronRight, Share2 } from "lucide-react";
+import { CaseStudy as CaseStudyType } from "@/types/caseStudy";
+import CaseStudyHero from "@/components/case-study/CaseStudyHero";
+import CaseStudyInfo from "@/components/case-study/CaseStudyInfo";
+import CaseStudyOverview from "@/components/case-study/CaseStudyOverview";
+import CaseStudyTabs from "@/components/case-study/CaseStudyTabs";
+import CaseStudyGallery from "@/components/case-study/CaseStudyGallery";
+import NextCaseStudyCta from "@/components/case-study/NextCaseStudyCta";
+import Loading from "@/components/case-study/Loading";
+import NotFound from "@/components/case-study/NotFound";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft, ChevronRight, Share2 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { CaseStudy as CaseStudyType } from "@/types/caseStudy";
 
 // Mock data structure for case studies
 const caseStudies: CaseStudyType[] = [
@@ -138,38 +145,22 @@ const CaseStudy = () => {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-marketing-600"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!caseStudy) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold mb-4">Case Study Not Found</h1>
-        <p className="mb-6">Sorry, the case study you're looking for doesn't exist.</p>
-        <Button asChild>
-          <a href="/#portfolio">Back to Portfolio</a>
-        </Button>
-      </div>
-    );
+    return <NotFound />;
   }
 
-  const { 
-    title, subtitle, client, category, date, heroImage, 
-    overview, challenge, solution, results, 
-    testimonial, process, gallery, nextProject 
-  } = caseStudy;
-
-  const nextCase = nextProject ? caseStudies.find(study => study.id === nextProject) : undefined;
+  const nextCase = caseStudy.nextProject 
+    ? caseStudies.find(study => study.id === caseStudy.nextProject) 
+    : undefined;
 
   const shareCase = () => {
     if (navigator.share) {
       navigator.share({
-        title: `Case Study: ${title}`,
-        text: `Check out this case study: ${title}`,
+        title: `Case Study: ${caseStudy.title}`,
+        text: `Check out this case study: ${caseStudy.title}`,
         url: window.location.href
       }).catch(err => console.log('Error sharing:', err));
     } else {
@@ -184,213 +175,35 @@ const CaseStudy = () => {
       <NavBar />
       
       <main className="pt-16">
-        {/* Hero section */}
-        <section 
-          className="relative h-[50vh] md:h-[60vh] bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="relative z-10 h-full flex flex-col justify-end">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-              <a 
-                href="/#portfolio" 
-                className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors"
-              >
-                <ArrowLeft size={18} className="mr-2" />
-                Back to Portfolio
-              </a>
-              <p className="text-marketing-400 uppercase font-medium tracking-wide mb-2">
-                {category}
-              </p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                {title}
-              </h1>
-              <p className="text-xl md:text-2xl text-white/80 max-w-3xl">
-                {subtitle}
-              </p>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero 
+          heroImage={caseStudy.heroImage}
+          category={caseStudy.category}
+          title={caseStudy.title}
+          subtitle={caseStudy.subtitle}
+        />
         
-        {/* Project info */}
-        <section className="bg-gray-50 py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">CLIENT</h3>
-                <p className="mt-1 text-lg font-medium">{client}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">CATEGORY</h3>
-                <p className="mt-1 text-lg font-medium capitalize">{category}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">DATE</h3>
-                <p className="mt-1 text-lg font-medium">{date}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">SHARE</h3>
-                <button 
-                  onClick={shareCase}
-                  className="mt-1 inline-flex items-center text-marketing-600 hover:text-marketing-800 transition-colors"
-                >
-                  <Share2 size={18} className="mr-1" />
-                  Share
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyInfo 
+          client={caseStudy.client}
+          category={caseStudy.category}
+          date={caseStudy.date}
+          onShare={shareCase}
+        />
 
-        {/* Overview section */}
-        <section className="py-16 md:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-              <div className="lg:col-span-4">
-                <h2 className="text-3xl font-bold mb-6">Project Overview</h2>
-              </div>
-              <div className="lg:col-span-8">
-                <p className="text-lg text-gray-600 mb-8">{overview}</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">The Challenge</h3>
-                    <p className="text-gray-600">{challenge}</p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">The Solution</h3>
-                    <p className="text-gray-600">{solution}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyOverview 
+          overview={caseStudy.overview}
+          challenge={caseStudy.challenge}
+          solution={caseStudy.solution}
+        />
         
-        {/* Results & Process */}
-        <section className="bg-gray-50 py-16 md:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Tabs defaultValue="results" className="w-full">
-              <TabsList className="grid w-full md:w-[400px] grid-cols-2 mb-12">
-                <TabsTrigger value="results">Results</TabsTrigger>
-                <TabsTrigger value="process">Process</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="results" className="animate-fade-in">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                  <div className="lg:col-span-4">
-                    <h2 className="text-3xl font-bold mb-6">The Results</h2>
-                  </div>
-                  <div className="lg:col-span-8">
-                    <ul className="space-y-4">
-                      {results.map((result, index) => (
-                        <li key={index} className="flex">
-                          <span className="inline-flex items-center justify-center shrink-0 rounded-full h-8 w-8 bg-marketing-100 text-marketing-600 mr-4">
-                            {index + 1}
-                          </span>
-                          <span className="text-lg">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {testimonial && (
-                      <div className="mt-12 bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                        <p className="text-xl italic text-gray-600 mb-6">"{testimonial.quote}"</p>
-                        <div>
-                          <p className="font-medium">{testimonial.author}</p>
-                          <p className="text-gray-500">{testimonial.position}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="process" className="animate-fade-in">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                  <div className="lg:col-span-4">
-                    <h2 className="text-3xl font-bold mb-6">The Process</h2>
-                  </div>
-                  <div className="lg:col-span-8">
-                    <div className="space-y-12">
-                      {process.map((step, index) => (
-                        <div key={index} className="relative">
-                          <div className={cn(
-                            "flex items-center mb-2",
-                            index < process.length - 1 ? "pb-12" : ""
-                          )}>
-                            <div className="shrink-0 h-10 w-10 rounded-full bg-marketing-600 text-white flex items-center justify-center mr-4">
-                              {index + 1}
-                            </div>
-                            <h3 className="text-xl font-semibold">{step.title}</h3>
-                          </div>
-                          
-                          {index < process.length - 1 && (
-                            <div className="absolute left-5 top-10 h-full w-px bg-gray-200 -translate-x-1/2"></div>
-                          )}
-                          
-                          <div className="ml-14">
-                            <p className="text-gray-600">{step.description}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </section>
+        <CaseStudyTabs 
+          results={caseStudy.results}
+          testimonial={caseStudy.testimonial}
+          process={caseStudy.process}
+        />
         
-        {/* Gallery */}
-        {gallery && gallery.length > 0 && (
-          <section className="py-16 md:py-24">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold mb-12 text-center">Project Gallery</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {gallery.map((item, index) => (
-                  <div key={index} className="group overflow-hidden rounded-lg shadow-md">
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <img 
-                        src={item.image} 
-                        alt={item.caption}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="p-4 bg-white">
-                      <p className="text-gray-600">{item.caption}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        <CaseStudyGallery gallery={caseStudy.gallery} />
         
-        {/* Next project CTA */}
-        {nextCase && (
-          <section className="bg-gray-900 text-white py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex flex-col md:flex-row justify-between items-center">
-                <div>
-                  <p className="text-gray-400 mb-2">Next Case Study</p>
-                  <h3 className="text-2xl font-bold">{nextCase.title}</h3>
-                </div>
-                <Button 
-                  asChild
-                  variant="outline" 
-                  size="lg"
-                  className="mt-6 md:mt-0 text-white border-white hover:bg-white hover:text-gray-900"
-                >
-                  <a href={`/case-study/${nextCase.id}`} className="inline-flex items-center">
-                    View Project
-                    <ChevronRight size={16} className="ml-2" />
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </section>
-        )}
+        <NextCaseStudyCta nextCase={nextCase} />
       </main>
       
       <Footer />
