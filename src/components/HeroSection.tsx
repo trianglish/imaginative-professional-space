@@ -13,7 +13,7 @@ const HeroSection = () => {
               Impactful <span className="text-gradient">Marketing</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-lg">
-              Hi, I'm Betsy. I help brands connect with their audience through 
+              Hi, I'm Betsy Ng. I help brands connect with their audience through 
               strategic marketing that drives results and creates meaningful experiences.
             </p>
             <div className="flex flex-wrap gap-4">
