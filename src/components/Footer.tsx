@@ -1,11 +1,10 @@
-
-import { ChevronUp } from "lucide-react";
+import {ChevronUp} from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
 
@@ -35,7 +34,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#about"
+                  href="/#about"
                   className="text-gray-300 hover:text-marketing-400 transition-colors"
                 >
                   About Me
@@ -43,7 +42,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#services"
+                  href="/#services"
                   className="text-gray-300 hover:text-marketing-400 transition-colors"
                 >
                   Services
@@ -51,7 +50,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#portfolio"
+                  href="/#portfolio"
                   className="text-gray-300 hover:text-marketing-400 transition-colors"
                 >
                   Portfolio
@@ -59,7 +58,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#testimonials"
+                  href="/#testimonials"
                   className="text-gray-300 hover:text-marketing-400 transition-colors"
                 >
                   Testimonials
@@ -67,7 +66,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href="/#contact"
                   className="text-gray-300 hover:text-marketing-400 transition-colors"
                 >
                   Contact
@@ -107,13 +106,13 @@ const Footer = () => {
 
           <div className="flex space-x-4">
             <a
-              href="#"
+              href="/"
               className="text-gray-400 hover:text-marketing-400 transition-colors"
             >
               Privacy Policy
             </a>
             <a
-              href="#"
+              href="/"
               className="text-gray-400 hover:text-marketing-400 transition-colors"
             >
               Terms of Service

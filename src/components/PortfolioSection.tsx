@@ -125,7 +125,7 @@ const PortfolioSection = () => {
         </Tabs>
         
         <div className="text-center">
-          <a href="#contact" className="btn-primary inline-block">
+          <a href="/#contact" className="btn-primary inline-block">
             Start Your Project
           </a>
         </div>
