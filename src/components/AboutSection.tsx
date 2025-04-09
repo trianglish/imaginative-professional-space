@@ -14,8 +14,8 @@ const AboutSection = () => {
                 alt="Betsy working"
                 className="rounded-xl shadow-lg z-10 relative"
               />
-              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
-                <p className="font-semibold text-gray-800">10+ Years Experience</p>
+              <div className="absolute -bottom-4 -right-4 bg-marketing-500 text-white p-3 rounded-lg shadow-lg">
+                <p className="font-semibold text-sm">10+ Years Experience</p>
               </div>
             </div>
           </div>
