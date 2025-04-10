@@ -29,23 +29,26 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-      
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
-      });
-      
-      setIsSubmitting(false);
-    }, 1500);
+    // Form submission will be handled by Netlify
+    // This code will only run during development
+    if (process.env.NODE_ENV === "development") {
+      setTimeout(() => {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: ""
+        });
+        
+        setIsSubmitting(false);
+      }, 1500);
+    }
   };
 
   return (
@@ -65,7 +68,18 @@ const ContactSection = () => {
             <form
               onSubmit={handleSubmit}
               className="bg-white p-8 rounded-xl shadow-md"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
             >
+              <input type="hidden" name="form-name" value="contact" />
+              <p hidden>
+                <label>
+                  Don't fill this out if you're human: <input name="bot-field" />
+                </label>
+              </p>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label

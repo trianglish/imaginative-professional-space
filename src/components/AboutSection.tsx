@@ -1,3 +1,4 @@
+
 import {Button} from "@/components/ui/button";
 import {Badge} from "@/components/ui/badge";
 
@@ -9,6 +10,11 @@ const AboutSection = () => {
           <div className="order-2 lg:order-1">
             <div className="relative">
               <div className="absolute inset-0 -z-10 bg-marketing-50 rounded-xl transform rotate-3"></div>
+              <div className="absolute -left-4 -top-4">
+                <Badge variant="outline" className="bg-white text-marketing-600 border-marketing-200 px-3 py-1.5 text-sm font-medium shadow-sm">
+                  10+ Years Experience
+                </Badge>
+              </div>
               <img
                 src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
                 alt="Betsy working"
