@@ -52,10 +52,7 @@ const AboutSection = () => {
                     Education
                   </h3>
                   <ul className="space-y-2">
-                    <li className="text-gray-600">MBA, Business Marketing</li>
-                    <li className="text-gray-600">
-                      BS, Marketing Communications
-                    </li>
+                    <li className="text-gray-600">BA(Hons) Marketing</li>
                   </ul>
                 </div>
 
