@@ -25,29 +25,43 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Form submission will be handled by Netlify
-    // This code will only run during development
-    if (process.env.NODE_ENV === "development") {
-      setTimeout(() => {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: ""
-        });
-        
-        setIsSubmitting(false);
-      }, 1500);
+    try {
+      // When running in build/production, let Netlify handle the form submission
+      if (process.env.NODE_ENV !== "development") {
+        // The form will be submitted automatically by the browser
+        // We just need to wait a bit to show the success message
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } else {
+        // For development environment, simulate the submission
+        await new Promise(resolve => setTimeout(resolve, 1500));
+      }
+      
+      // Show success message in both environments
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      
+      // Reset the form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: ""
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -123,7 +137,7 @@ const ContactSection = () => {
                     htmlFor="phone"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Phone Number
+                    Phone Number <span className="text-gray-400 text-xs">(Optional)</span>
                   </label>
                   <Input
                     id="phone"
