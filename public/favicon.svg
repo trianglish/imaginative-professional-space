@@ -1,0 +1,17 @@
+
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <circle cx="64" cy="64" r="64" fill="url(#paint0_linear)"/>
+  
+  <!-- "Ng" text -->
+  <path d="M37.5 88V40H46.5L71.5 75V40H80.5V88H71.5L46.5 53V88H37.5Z" fill="white"/>
+  <path d="M90.5 88V51H99.5V58C101.5 53 105.5 50 111.5 50C112.833 50 114 50.1667 115 50.5V59C113.667 58.6667 112.167 58.5 110.5 58.5C103.833 58.5 99.5 62.5 99.5 70.5V88H90.5Z" fill="white"/>
+  
+  <!-- Define the gradient -->
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00AFAF"/>
+      <stop offset="1" stop-color="#008C8C"/>
+    </linearGradient>
+  </defs>
+</svg>
