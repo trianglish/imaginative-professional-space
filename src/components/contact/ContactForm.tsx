@@ -37,24 +37,29 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Prepare form data for submission
+    const formElement = e.target as HTMLFormElement;
+    const formEntries = new FormData(formElement);
+    
     try {
-      // When running in build/production, let Netlify handle the form submission
-      if (process.env.NODE_ENV !== "development") {
-        // The form will be submitted automatically by the browser
-        // We just need to wait a bit to show the success message
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      } else {
-        // For development environment, simulate the submission
-        await new Promise(resolve => setTimeout(resolve, 1500));
+      // For Netlify Forms in production
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formEntries as any).toString()
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status}`);
       }
       
-      // Show success message in both environments
+      // Show success message
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
       
-      // Reset the form
+      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -62,7 +67,9 @@ const ContactForm = () => {
         subject: "",
         message: ""
       });
+      formElement.reset();
     } catch (error) {
+      console.error("Form submission error:", error);
       toast({
         title: "Error",
         description: "There was a problem sending your message. Please try again.",
